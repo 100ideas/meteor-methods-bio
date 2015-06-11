@@ -16,17 +16,6 @@ body {
   height: 300px; }
 
 
-/* For modern browsers */
-/* For IE 6/7 (trigger hasLayout) */
-/*
-.method {
-  zoom: 1;
-  position: relative;
-  opacity: 1; 
-  padding: 0;
-}
-*/
-
 
 div.method.panel.col-sm-6:nth-child(odd){
   margin-right:10px;
@@ -83,56 +72,6 @@ div.method.panel.col-sm-6:nth-child(odd){
     .method .method-content p {
       margin: 0; }
 
-
-
-
-
-.comments {
-  list-style-type: none;
-  margin: 0; }
-  .comments li h4 {
-    font-size: 16px;
-    margin: 0; }
-    .comments li h4 .date {
-      font-size: 12px;
-      font-weight: normal; }
-    .comments li h4 a {
-      font-size: 12px; }
-  .comments li p:last-child {
-    margin-bottom: 0; }
-
-.dropdown-menu span {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  line-height: 20px;
-  color: #bbb;
-  white-space: nowrap; }
-
-.load-more {
-  display: block;
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.05);
-  text-align: center;
-  height: 60px;
-  line-height: 60px;
-  margin-bottom: 10px; }
-  .load-more:hover {
-    text-decoration: none;
-    background: rgba(0, 0, 0, 0.1); }
-
-.methods .spinner-container{
-  position: relative;
-  height: 100px;
-}
-
-.jumbotron{
-  text-align: center;
-}
-.jumbotron h2{
-  font-size: 60px;
-  font-weight: 100;
-}
 
 @-webkit-keyframes fadeOut {
   0% {opacity: 0;}
