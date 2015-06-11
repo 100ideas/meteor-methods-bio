@@ -1,0 +1,26 @@
+<template name="methodItem">
+  <div class="method col-sm-6">
+    <div class="panel panel-default">
+      
+      <div class="method-io panel-heading">
+      <strong>inputs</strong>
+        {{#each inputs}}
+          <span class="label label-success">{{this}}</span>
+        {{/each}}
+      </div>  
+
+      <div class="method-content panel-body">
+        <h2 class="panel-title">{{title}} <span></span></h2>
+        <p>{{description}}</p>
+      </div>
+    
+      <div class="method-io panel-footer">
+        <strong>outputs</strong> 
+        {{#each outputs}}
+          <span class="label label-default">{{this}}</span>
+        {{/each}}
+      </div>
+
+    </div>
+  </div>
+</template>
