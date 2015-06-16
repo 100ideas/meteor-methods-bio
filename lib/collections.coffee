@@ -1,17 +1,18 @@
-Ontology = (doc) ->
+@Ontology = (doc) ->
   _.extend this, doc
 
 Ontology.prototype = 
   constructor: Ontology
 
-  root: ->
-    "todo"
+  root2: ->
+    this._name
 
-  color: ""
-  
+  transformed: true
+
 # need @ to hoist coffeescript vars to global scope
-@MethodCollection = new Mongo.Collection 'methods', 
+@MethodCollection = new Mongo.Collection 'methods',
+  transform: (doc) -> new Ontology doc
+
+@TypeCollection = new Mongo.Collection 'types',
   transform: (doc) ->
     new Ontology doc
-
-@TypeCollection = new Mongo.Collection 'types'
