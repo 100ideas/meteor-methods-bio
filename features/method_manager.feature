@@ -10,6 +10,17 @@ Feature: manage methods and ontology
     And the Methods are listed on the homepage
     And the ontology is shown on the homepage
 
+  Scenario: view list of method cards
+    Given that I am on the experiment design page
+    When I have no methods selected,
+    Then I see a list of all the methods
+
+  Scenario: filtering methods with compatible i/o
+    Given that I am on the experiment design page
+    And I have no methods selected,
+    When I click a method,
+    Then all methods with compatible outputs are highlighted
+
   Scenario: add new method
 
   Scenario: edit a selected method
@@ -22,4 +33,4 @@ Feature: manage methods and ontology
 
   Scenario: print method cards
 
-  Scenario: use wit.ai 
+  Scenario: use wit.ai ?

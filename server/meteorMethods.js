@@ -1,22 +1,22 @@
 Meteor.methods({
   resetdb: function () {
-    MethTypes.remove({});
-    Methods.remove({});
+    TypeCollection.remove({});
+    MethodCollection.remove({});
 
     // children must be inserted before parent
-    MethTypes.insert( {_id: "plasmid", children:[] }); 
-    MethTypes.insert( {_id: "genomic", children:[] }); 
-    // MethTypes.insert( {_id: "dsDNA", children:[] });
-    // MethTypes.insert( {_id: "ssDNA", children:[] });
-    MethTypes.insert( {_id: "DNA", children: ["plasmid", "genomic"]} );
-    MethTypes.insert( {_id: "DNA sequence", children:[] });
-    MethTypes.insert( {_id: "growth rate", children:[] });
-    MethTypes.insert( {_id: "gel bands", children:[] });
-    MethTypes.insert( {_id: "data", children: ["DNA sequence", "growth rate", "gel bands"] });
-    MethTypes.insert( {_id: "bacterial colonies", children:[] });
-    MethTypes.insert( {_id: "bacteria", children:["bacterial colonies"] });
+    TypeCollection.insert( {_id: "plasmid", children:[] }); 
+    TypeCollection.insert( {_id: "genomic", children:[] }); 
+    // TypeCollection.insert( {_id: "dsDNA", children:[] });
+    // TypeCollection.insert( {_id: "ssDNA", children:[] });
+    TypeCollection.insert( {_id: "DNA", children: ["plasmid", "genomic"]} );
+    TypeCollection.insert( {_id: "DNA sequence", children:[] });
+    TypeCollection.insert( {_id: "growth rate", children:[] });
+    TypeCollection.insert( {_id: "gel bands", children:[] });
+    TypeCollection.insert( {_id: "data", children: ["DNA sequence", "growth rate", "gel bands"] });
+    TypeCollection.insert( {_id: "bacterial colonies", children:[] });
+    TypeCollection.insert( {_id: "bacteria", children:["bacterial colonies"] });
 
-    Methods.insert({
+    MethodCollection.insert({
       inputs: ["plasmid"],
       title: "transformation",
       verbPhrase: "put plasmid into bacteria",
@@ -24,7 +24,7 @@ Meteor.methods({
       outputs: ["bacteria", "transformed bacteria"]
     });
 
-    Methods.insert({
+    MethodCollection.insert({
       inputs: ["bacteria"],
       title: "solid culture",
       verbPhrase: "copy bacteria by growing colonies",
@@ -32,7 +32,7 @@ Meteor.methods({
       outputs: ["bacterial colonies"]
     });
     
-    Methods.insert({
+    MethodCollection.insert({
       inputs: ["bacteria", "plasmid"],
       title: "miniprep",
       verbPhrase: "get plasmid outof bacteria",
@@ -40,7 +40,7 @@ Meteor.methods({
       outputs: ["plasmid"]
     });
 
-    Methods.insert({
+    MethodCollection.insert({
       inputs: ["DNA"],
       title: "Gel Electrophoresis",
       verbPhrase: "sort dna fragments by size",

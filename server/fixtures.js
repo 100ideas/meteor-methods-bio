@@ -1,17 +1,17 @@
-// if (MethTypes.find().count() === 0) {
-//   MethTypes.insert( {_id: "plasmid", children:[] }); 
-//   MethTypes.insert( {_id: "genomic", children:[] }); 
-//   // MethTypes.insert( {_id: "dsDNA", children:[] });
-//   // MethTypes.insert( {_id: "ssDNA", children:[] });
-//   MethTypes.insert( {_id: "DNA", children: ["plasmid", "genomic"]} );
+// if (TypeCollection.find().count() === 0) {
+//   TypeCollection.insert( {_id: "plasmid", children:[] }); 
+//   TypeCollection.insert( {_id: "genomic", children:[] }); 
+//   // TypeCollection.insert( {_id: "dsDNA", children:[] });
+//   // TypeCollection.insert( {_id: "ssDNA", children:[] });
+//   TypeCollection.insert( {_id: "DNA", children: ["plasmid", "genomic"]} );
   
-//   MethTypes.insert( {_id: "DNA sequence", children:[] });
-//   MethTypes.insert( {_id: "growth rate", children:[] });
-//   MethTypes.insert( {_id: "gel bands", children:[] });
-//   MethTypes.insert( {_id: "data", children: ["DNA sequence", "growth rate", "gel bands"] });
+//   TypeCollection.insert( {_id: "DNA sequence", children:[] });
+//   TypeCollection.insert( {_id: "growth rate", children:[] });
+//   TypeCollection.insert( {_id: "gel bands", children:[] });
+//   TypeCollection.insert( {_id: "data", children: ["DNA sequence", "growth rate", "gel bands"] });
   
-//   MethTypes.insert( {_id: "bacterial colonies", children:[] });
-//   MethTypes.insert( {_id: "bacteria", children:["bacterial colonies"] });
+//   TypeCollection.insert( {_id: "bacterial colonies", children:[] });
+//   TypeCollection.insert( {_id: "bacteria", children:["bacterial colonies"] });
 // }
 
 // if (Methods.find().count() === 0) {

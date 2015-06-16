@@ -6,18 +6,23 @@ data = [
     label: 'genomic'
   ,
     label: 'plasmid'
-    children: [
-      label: 'ssDNA'
-    ] 
+    # children: [
+    #   label: 'ssDNA'
+    # ] 
   ]
-  ,
-  label: 'data'
+ ,
+  label: 'information'
   children: [ 
     label: 'DNA sequence'
+  ,
+    label: 'gel image'
+  ,  
+    label: 'growth rate'
   ]
 ]
 
-$('#termTree').tree
-  data: data
-
-console.log data
+Template.termTree.onRendered ->
+  this.$('#termTree').tree
+    data: data
+    autoOpen: true
+  console.log "rendering termTree w/ #{data}"
