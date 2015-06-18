@@ -1,7 +1,7 @@
 @typeData = [
-  {label: 'DNA'}
-  {color: 'red'}
-  # children: [
+  label: 'DNA'
+  color: 'red'
+  # children: [ 
   #   label: 'genomic'
   #   label: 'plasmid'
   #   label: 'primer'
