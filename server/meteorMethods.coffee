@@ -1,42 +1,32 @@
-class jsonKindTreeInsert
+class kindFactoryFromJSON
   
-  root: {}
-  parent: {}
-  children_ids: []
-  collection: {}
+# class @Kind
+#   constructor: (@_id, @name, @root, @parent, @children, rest...) ->
+  root_kinds = []
 
   constructor: ({@data, @collection}) ->
-    console.log "constructor: #{@data}"
 
+  # TODO make tail recursive 
   parse: ->
-    for d in @data
+    console.log "----kindFactoryFromJSON PARSING PARTY----"
+    console.log @data
+    for d, index in @data
       # add root nodes
-      @root = @collection.insert 
-        name: d.name
-        color: d.color or {}
-        parent: d.parent
-        root: d.root or 'self'
-      @parent = @root 
-      @children_ids = d.children
-
-      # if children array, add elements to collection & save mongo _id
-      # then update parent with children _ids
+      if d.root is 'self'
+        root_kinds[index] = new Kind(d)
+        root_kinds[index]._id = @collection.insert(root_kinds[index])
+        console.log "d.root: #{d.root} is self? #{d.root is 'self'}"
+        console.log root_kinds[index]
+        console.log "d.children: "
+        console.log d.children?
       if d.children?
-        for kid in d.children
-          @children_ids.push @collection.insert
-            name: kid.name
-            parent: @parent
-            root: @root
+        for c, jindex in d.children
+          tempkid = new Kind(c)
+          tempkid.root = root_kinds[index]._id
+          root_kinds[index][jindex] = @collection.insert(tempkid)
 
-        for id in @children_ids
-          @collection.update(
-            {_id: @parent}
-            {$push: {children: id}}
-          )
 
-        @children_ids = {}
-
-class insertKindIDs
+class methodFactoryFromJSON
   
   inputs: []
   outputs: []
@@ -47,7 +37,7 @@ class insertKindIDs
   # goal is to replace string Kinds in inputs and outputs
   # with appropriate _id from KindCollection
   parse: ->
-    console.log "insertKindIDs on: #{@data}"
+    console.log "methodFactory working on: #{@data}"
 
     for method in @data
 
@@ -55,36 +45,34 @@ class insertKindIDs
         @inputs.push(@findIDByName input)
 
       for output in method.outputs
-        @outputs.push(@findIDByName input)
+        @outputs.push(@findIDByName output)
 
-      @intoCollection.insert
+      m = new Method 
         inputs: @inputs
         outputs: @outputs
         operator: method.operator or 'error'
         description: method.description
 
+      m._id = @intoCollection.insert m
+
       @inputs = []
       @outputs = []
 
-
-  findIDByName: (name) ->  
-    @idCollection.findOne({name: name})._id
-
+  findIDByName: (n) ->  
+    @idCollection.findOne({"name:", n})._id
 
 
 Meteor.methods
+  # ontology.coffee
   resetdb: ->
     KindCollection.remove({})
     MethodCollection.remove({})
     
-    # ontology.coffee
-    # MethodCollection.insert(m) for m in methodData
-
-    kindInserter = new jsonKindTreeInsert 
+    kindInserter = new kindFactoryFromJSON 
       data: kindData
       collection: KindCollection
 
-    methodInserter = new insertKindIDs 
+    methodInserter = new methodFactoryFromJSON 
       data: methodData
       idCollection: KindCollection
       intoCollection: MethodCollection      

@@ -1,19 +1,29 @@
 # use @ClassName pattern to hoist classes to global namespace
 class @Kind
-  constructor: (@_id, @name, @root, @parent, @children, rest...) ->
-    @color = rest.color if rest?.color?
+  constructor: ({@name, @root, @parent}) ->
 
   isKindOf: (sup) ->
     # is sup anwhere between here and the root?
     # implicit true/false return
-    @_id is sup._id or @parent?.isKindOf(sup) 
+    @_id is sup._id or @parent?.isKindOf(sup)
+
+  getKindByID: (_id) ->
+    KindCollection.findOne({id: _id},{fields: _id})
 
 
 class @Method
   instances = []
 
-  constructor: (@_id, @inputs, @outputs, @operator, @description) ->
+  constructor: (@id, @inputs, @outputs, @operator, @description) ->
     instances.push @
+
+  # constructor: ({data}) ->
+  #   instances.push @
+    
+  #   console.log "Method constructor data, then collection.find: "
+  #   console.log data
+  #   console.log(MethodCollection.findOne data.id)
+    
 
   canInput: (tx) ->
     input.iskindOf(output) for input in @inputs for output in tx.outputs
