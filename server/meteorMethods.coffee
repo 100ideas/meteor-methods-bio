@@ -1,4 +1,4 @@
-class jsonTreeInsert
+class jsonKindTreeInsert
   
   root: {}
   parent: {}
@@ -9,7 +9,6 @@ class jsonTreeInsert
     console.log "constructor: #{@data}"
 
   parse: ->
-    console.log "parse: #{@data}"
     for d in @data
       # add root nodes
       @root = @collection.insert 
@@ -37,6 +36,40 @@ class jsonTreeInsert
 
         @children_ids = {}
 
+class insertKindIDs
+  
+  inputs: []
+  outputs: []
+
+  constructor: ({@data, @idCollection, @intoCollection}) ->
+    console.log "constructor: #{@data}"
+
+  # goal is to replace string Kinds in inputs and outputs
+  # with appropriate _id from KindCollection
+  parse: ->
+    console.log "parsing: #{@data}"
+
+    for method in @data
+
+      for input in method.inputs
+        @inputs.push(@findIDByName input)
+
+      for output in method.outputs
+        @outputs.push(@findIDByName input)
+
+      @intoCollection.insert
+        inputs: @inputs
+        outputs: @outputs
+        operator: method.operator or 'error'
+        description: method.description
+
+      @inputs = []
+      @outputs = []
+
+
+  findIDByName: (name) ->  
+    @idCollection.findOne({name: name})._id
+
 
 
 Meteor.methods
@@ -45,56 +78,18 @@ Meteor.methods
     MethodCollection.remove({})
     
     # ontology.coffee
-    MethodCollection.insert(m) for m in methodData
-    # {@data, @collection}
-    kindInserter = new jsonTreeInsert 
+    # MethodCollection.insert(m) for m in methodData
+
+    kindInserter = new jsonKindTreeInsert 
       data: kindData
       collection: KindCollection
+
+    methodInserter = new insertKindIDs 
+      data: methodData
+      idCollection: KindCollection
+      intoCollection: MethodCollection      
+
+    # TODO currently only traverses one layer deep
     kindInserter.parse()
-
-
-
-
-
-# parseKindJSON = (data, parent_id, root) ->
-#   typeIsArray = Array.isArray || ( value ) -> return {}.toString.call( value ) is 
-#   parent = parent_id ? null
-#   # console.log "data: #{JSON.stringify data}"
-
-#   parseSubtree = (k) ->
-#     console.log "----@children: #{JSON.stringify k}"    
-#     parent_id = KindCollection.insert 
-#       name: k.name
-#       color: k.color
-#       root: root
-#       parent: parent
-
-#     if k.children
-#       for child in k.children
-
-#         parseKindJSON child, , root
-#         KindCollection.update( 
-#           {_id: parent}
-#           {$push: {children: child_id}}
-#         )
-#         console.log "updated KindCollection: _id, child_id: #{_id}, #{_id}"
-#     else
-#       null
-
-#     root = _id if root is 'self'
-#     console.log "inserted: #{_id}"
-
-#   if typeIsArray data
-#     parseSubtree ki for ki in data
-#   else
-#     parseSubtree data
-
-
-    # for child in k.children
-    #   console.log "found a child, id param is: #{_id}"
-    #   console.log "child: #{child.name}"
-
-    #   parseKindJSON child, _id, root, (child_id) => 
-    #     KindCollection.update( {_id: parent}, {$push: {children: child_id}})
-    #     console.log "updated KindCollection: _id, child_id: #{_id}, #{child_id}"
+    methodInserter.parse()
 

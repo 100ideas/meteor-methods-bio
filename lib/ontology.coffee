@@ -29,4 +29,9 @@
   outputs: ["DNA"]
   operator: 'PCR'
   description: "copy dna etc etc etc"
+,
+  inputs: ["DNA", "plasmid"]
+  outputs: ["bacteria"]
+  operator: 'transformation'
+  description: "insert plasmid dna into bacteria"
 ]
