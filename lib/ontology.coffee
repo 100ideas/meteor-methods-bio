@@ -1,20 +1,28 @@
-@typeData = [
-  type: 'DNA'
+@kindData = [
+  name: 'DNA'
   color: 'red'
-  children: [ 
-    type: 'genomic'
-    type: 'plasmid'
-    type: 'primer'
-    type: 'ssDNA'
-  ],
-  type: 'information'
+  root: 'self'
+  parent: null
+  children: [
+    {name: 'genomic', parent: 'DNA', root: 'DNA'}
+    {name: 'plasmid', parent: 'DNA', root: 'DNA'}
+    {name: 'primer', parent: 'DNA', root: 'DNA'}
+    {name: 'ssDNA', parent: 'DNA', root: 'DNA'}
+  ]
+,
+  root: 'self'
+  parent: null
+  name: 'information'
   color: 'green'
   children: [ 
-    type: 'DNA sequence'
-    type: 'gel image'
-    type: 'growth rate'
+    {name: 'DNA sequence'}
+    {name: 'gel image'}
+    {name: 'growth rate'}
   ]
 ]
+
+
+
 
 @methodData = [
   inputs: ["DNA", "primer"]

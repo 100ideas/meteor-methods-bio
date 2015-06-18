@@ -1,5 +1,5 @@
-Meteor.publish 'types', ->
-  TypeCollection.find {}
+Meteor.publish 'kinds', ->
+  KindCollection.find {}
 
 Meteor.publish 'methods', ->
   MethodCollection.find {}

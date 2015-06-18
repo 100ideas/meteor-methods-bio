@@ -1,6 +1,7 @@
 # use @ClassName pattern to hoist classes to global namespace
 class @Kind
-  constructor: (@_id, @name, @root, @parent, @children) ->
+  constructor: (@_id, @name, @root, @parent, @children, rest...) ->
+    @color = rest.color if rest?.color?
 
   isKindOf: (sup) ->
     # is sup anwhere between here and the root?
@@ -22,8 +23,12 @@ class @Method
 class @MChain
   constructor: () ->
 
-Meteor.call 'resetdb' unless MethodCollection.find({}).count()
-console.log #{new Method (doc) for doc in MethodCollection.find({}).fetch()}
+Meteor.call 'resetdb' unless MethodCollection.find({}).count() or KindCollection.find({}).count()
+new Method (doc) for doc in MethodCollection.find({}).fetch()
+
+                
+
+
 
 
 
