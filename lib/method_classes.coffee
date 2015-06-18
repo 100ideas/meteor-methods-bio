@@ -14,8 +14,9 @@ class @Kind
 class @Method
   instances = []
 
-  constructor: ({@id, @inputs, @outputs, @operator, @description}) ->
+  constructor: ({@inputs, @outputs, @inames, @onames, @operator, @description}) ->
     instances.push @
+
     
 
   canInput: (tx) ->

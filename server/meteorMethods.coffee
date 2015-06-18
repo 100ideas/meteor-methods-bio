@@ -37,31 +37,40 @@ class methodFactoryFromJSON
   # goal is to replace string Kinds in inputs and outputs
   # with appropriate _id from KindCollection
   parse: ->
-    console.log "methodFactory working on: #{@data}"
-
     for method in @data
 
+      @inputs = []
+      @outputs = []
+
+      # @inputs.ids = []
+      # @inputs.names = method.inputs
+      # @outputs.ids = []
+      # @outputs.names = method.outputs
+
+      # TODO make reactive? ejson?
       for input in method.inputs
+        # console.log @inputs.ids.push(@findIDByName input)
         @inputs.push(@findIDByName input)
 
       for output in method.outputs
         @outputs.push(@findIDByName output)
+        # @outputs.names.push output
 
+      console.log m
       m = new Method 
         inputs: @inputs
         outputs: @outputs
+        inames: method.inputs
+        onames: method.outputs
         operator: method.operator or 'error'
         description: method.description
 
       # m._id = @intoCollection.insert m
       @intoCollection.insert m
 
-      @inputs = []
-      @outputs = []
-
   findIDByName: (n) ->  
     console.log "findIDbyName name: #{n}"
-    @idCollection.findOne({"name:", n})?._id
+    @idCollection.findOne({name: n})?._id
 
 
 Meteor.methods
