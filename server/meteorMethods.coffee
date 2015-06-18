@@ -53,13 +53,15 @@ class methodFactoryFromJSON
         operator: method.operator or 'error'
         description: method.description
 
-      m._id = @intoCollection.insert m
+      # m._id = @intoCollection.insert m
+      @intoCollection.insert m
 
       @inputs = []
       @outputs = []
 
   findIDByName: (n) ->  
-    @idCollection.findOne({"name:", n})._id
+    console.log "findIDbyName name: #{n}"
+    @idCollection.findOne({"name:", n})?._id
 
 
 Meteor.methods
