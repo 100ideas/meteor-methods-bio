@@ -4,5 +4,5 @@ Meteor.methods
     MethodCollection.remove({})
     
     # ontology.coffee
-    TypeCollection.insert(typeData)
-    MethodCollection.insert(methodData)
+    TypeCollection.insert(t) for t in typeData
+    MethodCollection.insert(m) for m in methodData

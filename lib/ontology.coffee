@@ -1,25 +1,24 @@
 @typeData = [
-  label: 'DNA'
+  type: 'DNA'
   color: 'red'
-  # children: [ 
-  #   label: 'genomic'
-  #   label: 'plasmid'
-  #   label: 'primer'
-  #   label: 'ssDNA'
-  # ],
-  # label: 'information'
-  # color: 'green'
-  # children: [ 
-  #   label: 'DNA sequence'
-  #   label: 'gel image'
-  #   label: 'growth rate'
-  # ]
+  children: [ 
+    type: 'genomic'
+    type: 'plasmid'
+    type: 'primer'
+    type: 'ssDNA'
+  ],
+  type: 'information'
+  color: 'green'
+  children: [ 
+    type: 'DNA sequence'
+    type: 'gel image'
+    type: 'growth rate'
+  ]
 ]
 
 @methodData = [
-  {label: 'PCR'}
-  {color: 'blue'}
-  {description: "copy dna etc etc etc"}
-  {inputs: ["DNA"]}
-  {outputs: ["DNA"]}
+  inputs: ["DNA", "primer"]
+  outputs: ["DNA"]
+  operator: 'PCR'
+  description: "copy dna etc etc etc"
 ]
