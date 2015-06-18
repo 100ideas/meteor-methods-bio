@@ -47,7 +47,7 @@ class insertKindIDs
   # goal is to replace string Kinds in inputs and outputs
   # with appropriate _id from KindCollection
   parse: ->
-    console.log "parsing: #{@data}"
+    console.log "insertKindIDs on: #{@data}"
 
     for method in @data
 

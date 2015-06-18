@@ -18,13 +18,18 @@ class @Method
   canInput: (tx) ->
     input.iskindOf(output) for input in @inputs for output in tx.outputs
 
+  inputNames: ->
+    KindCollection.findOne(input) for input in @inputs
+
+  outputNames: ->
+    KindCollection.findOne(output) for output in @outputs
 
 # TODO
 class @MChain
   constructor: () ->
 
-Meteor.call 'resetdb' unless MethodCollection.find({}).count() or KindCollection.find({}).count()
-new Method (doc) for doc in MethodCollection.find({}).fetch()
+# Meteor.call 'resetdb' unless MethodCollection.find({}).count() or KindCollection.find({}).count()
+# new Method (doc) for doc in MethodCollection.find({}).fetch()
 
                 
 
