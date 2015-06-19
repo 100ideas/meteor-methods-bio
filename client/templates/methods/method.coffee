@@ -14,20 +14,24 @@ Template.methodCards.helpers
   validMethod: (inMeth) ->
     outMeth = Session.get "selectedMethod"
     match = 0
-    if outMeth
+    if outMeth isnt ''
       for o in outMeth.outputs
         for i in inMeth.inputs
           if Kind.isKindOf(o, i)
             match++
-    if match >= outMeth.outputs.length
+    if match >= outMeth.outputs?.length?
       return ""
     else 
       return 'disabled-method'
 
+  isSelectedMethod: (meth) ->
+    if Session.get("selectedMethod")?._id is this._id
+      return 'selected-method'
+
 Template.methodCards.events
   'click .method': (e) ->
-    if Session.get("selectedMethod") is this
-      Session.set("selectedMethod", "")  
+    if Session.get("selectedMethod")?._id is this._id
+      Session.set("selectedMethod", '')  
     else
       Session.set "selectedMethod", this
     console.log this
