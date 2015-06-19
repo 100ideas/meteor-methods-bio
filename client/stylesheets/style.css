@@ -50,6 +50,15 @@ div.method.panel.col-sm-6:nth-child(odd){
     
   .method .method-io span.label {
     /*margin: 0 .5em;*/
+    line-height: 1.4;
+    font-size: 16px; 
+  }
+
+    .method .method-io span.label.disabled-method {
+    /*margin: 0 .5em;*/
+    line-height: 1.2;
+    font-size: 16px; 
+    background-color: lightgray !important;
   }
   
   .method .method-content {
@@ -58,8 +67,14 @@ div.method.panel.col-sm-6:nth-child(odd){
   }
 
   .disabled-method {
-    background-color: rgba(255, 0, 97, 0.47);
+    /*background-color: rgba(255, 0, 97, 0.47);*/
+    color: lightgray !important;
   }
+
+  .disabled-method .method-io.panel-heading {
+    background-color: rgba(255, 63, 63, 0.47);
+    color: lightgray !important;
+  }  
 
   #selected-method{
     background-color: rgba(134, 255, 159, 1) !important;

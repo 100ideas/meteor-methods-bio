@@ -34,6 +34,21 @@
 ]
 
 @methodData = [
+  operator: 'order DNA synthesis'
+  inputs: ["DNA sequence"]
+  outputs: ["oligo"]
+  description: "grow clonal colonies of bacteria"   
+,
+  operator: 'digest'
+  inputs: ["DNA"]
+  outputs: ["DNAs"]
+  description: "cut dna at sites"   
+,
+  operator: 'ligate'
+  inputs: ["DNA"]
+  outputs: ["DNAs"]
+  description: "join fragments of DNA" 
+,  
   operator: 'PCR'
   inputs: ["template", "oligo"]
   outputs: ["DNA"]
@@ -44,6 +59,11 @@
   outputs: ["bacteria"]
   description: "insert plasmid dna into bacteria"
 ,
+  operator: 'plate colonies'
+  inputs: ["bacteria"]
+  outputs: ["colonies"]
+  description: "grow clonal colonies of bacteria"   
+,
   operator: 'genomic prep'
   inputs: ["bacteria"]
   outputs: ["genomic"]
@@ -53,21 +73,6 @@
   inputs: ["liquid culture"]
   outputs: ["plasmid"]
   description: "insert plasmid dna into bacteria" 
-,
-  operator: 'digest'
-  inputs: ["DNA"]
-  outputs: ["DNAs"]
-  description: "cut dna at restriction sites into mutliple fragments" 
-,
-  operator: 'ligate'
-  inputs: ["DNA"]
-  outputs: ["DNAs"]
-  description: "cut dna at restriction sites into mutliple fragments" 
-,
-  operator: 'plate colonies'
-  inputs: ["bacteria"]
-  outputs: ["colonies"]
-  description: "grow clonal colonies of bacteria" 
 ,
   operator: 'order primers'
   inputs: ["DNA sequence"]
