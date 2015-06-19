@@ -13,15 +13,15 @@ class kindFactoryFromJSON
     for d, i in @data
       # add root nodes
       if d.root is 'self'
-        ktr[i] = new Kind(d)
-        ktr[i]._id = @collection.insert(ktr[i]) #make sure not to explicitly set d._id in db
-        @collection.update {_id: ktr[i]._id},{$set: { root: ktr[i]._id, parent: ktr[i]._id}}
+        ktr[i] = @collection.insert(new Kind(d)) #make sure not to explicitly set d._id in db
+        # console.log ktr[i]
+        @collection.update {_id: ktr[i]},{$set: { id:ktr[i], root: ktr[i], parent: ktr[i]}}
 
       if d.children?
         for c, j in d.children
           tempkid = new Kind(c)
-          tempkid.root = ktr[i]._id
-          tempkid.parent = ktr[i]._id
+          tempkid.root = ktr[i]
+          tempkid.parent = ktr[i]
           ktr[i][j] = @collection.insert(tempkid)
 
 
@@ -51,9 +51,8 @@ class methodFactoryFromJSON
 
       for output in method.outputs
         @outputs.push(@findIDByName output)
-        # @outputs.names.push output
 
-      console.log m
+      console.log "-------- create new method object -------------"
       m = new Method 
         inputs: @inputs
         outputs: @outputs
@@ -61,13 +60,14 @@ class methodFactoryFromJSON
         onames: method.outputs
         operator: method.operator or 'error'
         description: method.description
-
+      
+      console.log m
       # m._id = @intoCollection.insert m
       @intoCollection.insert m
 
   findIDByName: (n) ->  
-    console.log "findIDbyName name: #{n}"
-    @idCollection.findOne({name: n})?._id
+    # console.log "findIDbyName name: #{n}"
+    @idCollection.findOne({name: n})._id
 
 
 Meteor.methods

@@ -1,27 +1,35 @@
 @kindData = [
-  name: 'DNA'
+  label: 'DNA'
   color: 'red'
   root: 'self'
   parent: null
   children: [
-    {name: 'genomic', parent: 'DNA', root: 'DNA'}
-    {name: 'plasmid', parent: 'DNA', root: 'DNA'}
-    {name: 'primer', parent: 'DNA', root: 'DNA'}
-    {name: 'ssDNA', parent: 'DNA', root: 'DNA'}
+    {label: 'genomic'}
+    {label: 'plasmid'}
+    {label: 'primer'}
+    {label: 'ssDNA'}
   ]
 ,
+  label: 'bacteria'
   root: 'self'
   parent: null
-  name: 'information'
   color: 'green'
   children: [ 
-    {name: 'DNA sequence'}
-    {name: 'gel image'}
-    {name: 'growth rate'}
+    {label: 'colony'}
+    {label: 'liquid culture'}
+    {label: 'stab'}
+  ]
+,  
+  label: 'information'
+  root: 'self'
+  parent: null
+  color: 'yellow'
+  children: [ 
+    {label: 'DNA sequence'}
+    {label: 'gel image'}
+    {label: 'growth rate'}
   ]
 ]
-
-
 
 
 @methodData = [
@@ -34,4 +42,9 @@
   outputs: ["bacteria"]
   operator: 'transformation'
   description: "insert plasmid dna into bacteria"
+,
+  inputs: ["bacteria"]
+  outputs: ["plasmid"]
+  operator: 'miniprep'
+  description: "insert plasmid dna into bacteria"  
 ]
