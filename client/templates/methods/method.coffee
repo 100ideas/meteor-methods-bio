@@ -13,12 +13,16 @@ Template.methodCards.helpers
 
   validMethod: (inMeth) ->
     outMeth = Session.get "selectedMethod"
+    match = 0
     if outMeth
       for o in outMeth.outputs
         for i in inMeth.inputs
-          if !Kind.isKindOf(o, i)
-            return 'disabled'
-    return ""
+          if Kind.isKindOf(o, i)
+            match++
+    if match >= outMeth.outputs.length
+      return ""
+    else 
+      return 'disabled-method'
 
 Template.methodCards.events
   'click .method': (e) ->

@@ -66,7 +66,7 @@ class methodFactoryFromJSON
       @intoCollection.insert m
 
   findIDByName: (n) ->  
-    # console.log "findIDbyName name: #{n}"
+    console.log "findIDbyName name: #{n}"
     @idCollection.findOne({name: n})._id
 
 

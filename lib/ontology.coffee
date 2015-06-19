@@ -1,20 +1,3 @@
-@methodData = [
-  inputs: ["template", "primer"]
-  outputs: ["DNA"]
-  operator: 'PCR'
-  description: "copy dna etc etc etc"
-,
-  inputs: ["DNA", "plasmid"]
-  outputs: ["bacteria"]
-  operator: 'transformation'
-  description: "insert plasmid dna into bacteria"
-,
-  inputs: ["bacteria"]
-  outputs: ["plasmid"]
-  operator: 'miniprep'
-  description: "insert plasmid dna into bacteria"  
-]
-
 @kindData = [
   label: 'DNA'
   color: 'success'
@@ -24,8 +7,9 @@
     {label: 'genomic'}
     {label: 'template'}    
     {label: 'plasmid'}
-    {label: 'primer'}
+    {label: 'oligo'}
     {label: 'ssDNA'}
+    {label: 'DNAs'}
   ]
 ,
   label: 'bacteria'
@@ -33,7 +17,7 @@
   parent: null
   color: 'warning'
   children: [ 
-    {label: 'colony'}
+    {label: 'colonies'}
     {label: 'liquid culture'}
     {label: 'stab'}
   ]
@@ -48,3 +32,46 @@
     {label: 'growth rate'}
   ]
 ]
+
+@methodData = [
+  operator: 'PCR'
+  inputs: ["template", "oligo"]
+  outputs: ["DNA"]
+  description: "copy dna etc etc etc"
+,
+  operator: 'transform'
+  inputs: ["DNA", "plasmid"]
+  outputs: ["bacteria"]
+  description: "insert plasmid dna into bacteria"
+,
+  operator: 'genomic prep'
+  inputs: ["bacteria"]
+  outputs: ["genomic"]
+  description: "isolate genome from bacteria"  
+,
+  operator: 'miniprep'
+  inputs: ["liquid culture"]
+  outputs: ["plasmid"]
+  description: "insert plasmid dna into bacteria" 
+,
+  operator: 'digest'
+  inputs: ["DNA"]
+  outputs: ["DNAs"]
+  description: "cut dna at restriction sites into mutliple fragments" 
+,
+  operator: 'ligate'
+  inputs: ["DNA"]
+  outputs: ["DNAs"]
+  description: "cut dna at restriction sites into mutliple fragments" 
+,
+  operator: 'plate colonies'
+  inputs: ["bacteria"]
+  outputs: ["colonies"]
+  description: "grow clonal colonies of bacteria" 
+,
+  operator: 'order primers'
+  inputs: ["DNA sequence"]
+  outputs: ["oligo"]
+  description: "grow clonal colonies of bacteria" 
+]
+

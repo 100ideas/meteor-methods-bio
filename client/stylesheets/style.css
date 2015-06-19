@@ -57,8 +57,8 @@ div.method.panel.col-sm-6:nth-child(odd){
     width: 100%; */
   }
 
-  .method .disabled {
-    background: #fff;
+  .disabled-method {
+    background-color: rgba(255, 0, 97, 0.47);
   }
     .method .method-content h3 {
       margin: 0;
