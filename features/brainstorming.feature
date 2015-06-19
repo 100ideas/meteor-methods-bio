@@ -27,3 +27,10 @@ Feature: organize notes on methods ontology & graph search
     - A variety of protocols may implement the same method, albeit with different physical steps
     - Methods contain references to the Protocols that implement them
     - Methods represent their function by specifying their input and output using terms from a controlled vocabulary, with terms such as “dna”, “rna”, 
+
+
+    LEAP
+    - Worlds premeier open, online repository for scientific protocols
+    - facilitated experimental design for novices
+    - and powerful enough for managing complex industrial workflows
+    - designed to support digital protocol services and products

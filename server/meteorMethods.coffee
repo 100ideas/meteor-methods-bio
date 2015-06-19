@@ -1,8 +1,8 @@
 class kindFactoryFromJSON
   
-# class @Kind
-#   constructor: (@_id, @name, @root, @parent, @children, rest...) ->
-  root_kinds = []
+  # class @Kind
+  #   constructor: (@_id, @name, @root, @parent, @children, rest...) ->
+  ktr = []
 
   constructor: ({@data, @collection}) ->
 
@@ -10,20 +10,19 @@ class kindFactoryFromJSON
   parse: ->
     console.log "----kindFactoryFromJSON PARSING PARTY----"
     console.log @data
-    for d, index in @data
+    for d, i in @data
       # add root nodes
       if d.root is 'self'
-        root_kinds[index] = new Kind(d)
-        root_kinds[index]._id = @collection.insert(root_kinds[index])
-        console.log "d.root: #{d.root} is self? #{d.root is 'self'}"
-        console.log root_kinds[index]
-        console.log "d.children: "
-        console.log d.children?
+        ktr[i] = new Kind(d)
+        ktr[i]._id = @collection.insert(ktr[i]) #make sure not to explicitly set d._id in db
+        @collection.update {_id: ktr[i]._id},{$set: { root: ktr[i]._id, parent: ktr[i]._id}}
+
       if d.children?
-        for c, jindex in d.children
+        for c, j in d.children
           tempkid = new Kind(c)
-          tempkid.root = root_kinds[index]._id
-          root_kinds[index][jindex] = @collection.insert(tempkid)
+          tempkid.root = ktr[i]._id
+          tempkid.parent = ktr[i]._id
+          ktr[i][j] = @collection.insert(tempkid)
 
 
 class methodFactoryFromJSON
@@ -32,8 +31,6 @@ class methodFactoryFromJSON
   outputs: []
 
   constructor: ({@data, @idCollection, @intoCollection}) ->
-    console.log "constructor: #{@data}"
-
   # goal is to replace string Kinds in inputs and outputs
   # with appropriate _id from KindCollection
   parse: ->

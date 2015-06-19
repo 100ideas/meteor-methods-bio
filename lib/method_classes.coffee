@@ -1,14 +1,24 @@
 # use @ClassName pattern to hoist classes to global namespace
 class @Kind
-  constructor: ({@name, @root, @parent}) ->
+  constructor: ({@_id, @name, @root, @parent, others}) ->
 
-  isKindOf: (sup) ->
-    # is sup anwhere between here and the root?
-    # implicit true/false return
-    @_id is sup._id or @parent?.isKindOf(sup)
+  # only false when k1 is not in subgraph of k2
+  @isKindOf = (k1, k2) ->
+    k1 = Kind.get(k1)
+    k2 = Kind.get(k2)
+    do recurse = (k1, k2) ->
+      switch
+        when k1.root isnt k2.root then false
+        when k1._id is k2._id then true 
+        when k1._id is k1.root then false #got to the top but no match
+        else recurse(Kind.get(k1.parent), k2)
 
-  getKindByID: (_id) ->
-    KindCollection.findOne({id: _id})
+  @get: (id) ->
+    console.log "---GETTER----"
+    k = KindCollection.findOne(id)
+    k._id = k.id unless k._id
+    console.log "getter k._id? #{k._id}"
+    return k
 
 
 class @Method
