@@ -61,8 +61,8 @@ div.method.panel.col-sm-6:nth-child(odd){
     background-color: rgba(255, 0, 97, 0.47);
   }
 
-  .selected-method{
-    background-color: : rgba(134, 255, 159, 1) !important;
+  #selected-method{
+    background-color: rgba(134, 255, 159, 1) !important;
   }
 
     .method .method-content h3 {

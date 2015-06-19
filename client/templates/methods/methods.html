@@ -4,7 +4,7 @@
       <div class="method col-sm-6 ">
         <div class="panel panel-default {{validMethod this}}">
           
-          <div class="method-io panel-heading {{isSelectedMethod this}}">
+          <div class="method-io panel-heading" id="{{isSelectedMethod this}}">
           <strong>inputs</strong> 
             {{#each inames}}
               <span class="io label label-{{getcolor this}}">{{this}}</span>
