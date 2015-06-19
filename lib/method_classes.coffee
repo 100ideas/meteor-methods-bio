@@ -1,10 +1,13 @@
 # use @ClassName pattern to hoist classes to global namespace
 class @Kind
-  constructor: ({@_id, @id, @label, @name, @root, @parent}) ->
+  constructor: ({@_id, @id, @label, @name, @root, @parent, @color}) ->
     @id = @_id # in case constructor init from db query result
     @name = @label #convenience format
     delete this._id
     delete this.label
+
+    @color = Kind.get(@parent)?.color unless @color?
+
 
   # only false when k1 is not in subgraph of k2
   @isKindOf = (k1, k2) ->

@@ -56,10 +56,14 @@ div.method.panel.col-sm-6:nth-child(odd){
 /*    float: left; 
     width: 100%; */
   }
+
+  .method .disabled {
+    background: #fff;
+  }
     .method .method-content h3 {
       margin: 0;
       line-height: 1.4;
-      font-size: 18px; 
+      font-size: 22px; 
       display: inline;}
       .method .method-content h3 a {
         display: inline-block;

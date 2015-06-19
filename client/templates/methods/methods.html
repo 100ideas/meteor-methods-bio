@@ -1,0 +1,32 @@
+<template name="methodCards">
+  <div class="col-sm-8">
+    {{#each methods}}
+      <div class="method col-sm-6 {{validMethod this}}">
+        <div class="panel panel-default">
+          
+          <div class="method-io panel-heading">
+          <strong>inputs</strong> 
+            {{#each inames}}
+              <span class="io label label-{{getcolor this}}">{{this}}</span>
+            {{/each}}
+          </div>  
+
+          <div class="method-content panel-body">
+            <h3 class="panel-title">{{operator}}</h3>
+            <p>{{description}}</p>
+          </div>
+        
+          <div class="method-io panel-footer">
+            <strong>outputs</strong> 
+            {{#each onames}}
+              <span class="label label-{{getcolor this}}">{{this}}</span>
+            {{/each}}
+          </div>
+
+        </div>
+      </div>      
+
+    {{/each}}
+  </div>
+</template>
+
