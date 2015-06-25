@@ -1,4 +1,4 @@
-class kindFactoryFromJSON
+class KindFactoryFromJSON
   
   # class @Kind
   #   constructor: (@_id, @name, @root, @parent, @children, rest...) ->
@@ -6,9 +6,9 @@ class kindFactoryFromJSON
 
   constructor: ({@data, @collection}) ->
 
-  # TODO make tail recursive 
+  # TODO make tail recursive
   parse: ->
-    console.log "----kindFactoryFromJSON PARSING PARTY----"
+    console.log "----KindFactoryFromJSON PARSING PARTY----"
     console.log @data
     for d, i in @data
       # add root nodes
@@ -25,7 +25,7 @@ class kindFactoryFromJSON
           ktr[i][j] = @collection.insert(tempkid)
 
 
-class methodFactoryFromJSON
+class MethodFactoryFromJSON
   
   inputs: []
   outputs: []
@@ -53,7 +53,7 @@ class methodFactoryFromJSON
         @outputs.push(@findIDByName output)
 
       console.log "-------- create new method object -------------"
-      m = new Method 
+      m = new Method
         inputs: @inputs
         outputs: @outputs
         inames: method.inputs
@@ -65,7 +65,7 @@ class methodFactoryFromJSON
       # m._id = @intoCollection.insert m
       @intoCollection.insert m
 
-  findIDByName: (n) ->  
+  findIDByName: (n) ->
     console.log "findIDbyName name: #{n}"
     @idCollection.findOne({name: n})._id
 
@@ -76,14 +76,14 @@ Meteor.methods
     KindCollection.remove({})
     MethodCollection.remove({})
     
-    kindInserter = new kindFactoryFromJSON 
+    kindInserter = new KindFactoryFromJSON
       data: kindData
       collection: KindCollection
 
-    methodInserter = new methodFactoryFromJSON 
+    methodInserter = new MethodFactoryFromJSON
       data: methodData
       idCollection: KindCollection
-      intoCollection: MethodCollection      
+      intoCollection: MethodCollection
 
     # TODO currently only traverses one layer deep
     kindInserter.parse()

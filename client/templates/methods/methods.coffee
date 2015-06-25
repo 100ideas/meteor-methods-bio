@@ -1,6 +1,6 @@
-Template.methodCards.helpers
+Template.method.helpers
   methods: ->
-    doc for doc in MethodCollection.find({}).fetch();
+    doc for doc in MethodCollection.find({}).fetch()
 
   getcolor: (kindname) ->
     console.log kindname
@@ -21,17 +21,17 @@ Template.methodCards.helpers
             match++
     if match >= outMeth.outputs?.length?
       return ""
-    else 
+    else
       return 'disabled-method'
 
   isSelectedMethod: (meth) ->
     if Session.get("selectedMethod")?._id is this._id
       return 'selected-method'
 
-Template.methodCards.events
+Template.methods.events
   'click .method': (e) ->
     if Session.get("selectedMethod")?._id is this._id
-      Session.set("selectedMethod", '')  
+      Session.set("selectedMethod", '')
     else
       Session.set "selectedMethod", this
     console.log this

@@ -9,7 +9,11 @@
     {label: 'plasmid'}
     {label: 'oligo'}
     {label: 'ssDNA'}
+    {label: 'dsDNA'}
+    {label: 'linear'}
     {label: 'DNAs'}
+    {label: 'RDP Parts'}
+    
   ]
 ,
   label: 'bacteria'
@@ -45,8 +49,8 @@
   description: "cut dna at sites"   
 ,
   operator: 'ligate'
-  inputs: ["DNA"]
-  outputs: ["DNAs"]
+  inputs: ["DNAs"]
+  outputs: ["DNA"]
   description: "join fragments of DNA" 
 ,  
   operator: 'PCR'
@@ -62,7 +66,12 @@
   operator: 'plate colonies'
   inputs: ["bacteria"]
   outputs: ["colonies"]
-  description: "grow clonal colonies of bacteria"   
+  description: "grow clonal colonies of bacteria" 
+,
+  operator: 'plate colonies'
+  inputs: ["bacteria"]
+  outputs: ["colonies"]
+  description: "grow clonal colonies of bacteria"     
 ,
   operator: 'genomic prep'
   inputs: ["bacteria"]
@@ -78,5 +87,10 @@
   inputs: ["DNA sequence"]
   outputs: ["oligo"]
   description: "grow clonal colonies of bacteria" 
+,
+  operator: 'Genomicon RDP assembly'
+  inputs: ["RDP Parts"]
+  outputs: ["linear"]
+  description: "assemble RDP parts in an any order" 
 ]
 
