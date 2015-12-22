@@ -1,4 +1,4 @@
-Template.method.helpers
+Template.methods.helpers
   methods: ->
     doc for doc in MethodCollection.find({}).fetch()
 

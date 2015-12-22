@@ -35,9 +35,7 @@ Feature: organize notes on methods ontology & graph search
     - and powerful enough for managing complex industrial workflows
     - designed to support digital protocol services and products
 
-
-
-
-    - CODE COMLPletion
-
-    
+  TODO
+    - research drag-n-drop stack ux approaches
+    - edit view for methods
+    - protocol view for methods
