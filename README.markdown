@@ -1,11 +1,17 @@
 # Methods.bio
 
-Your biotech sidekick! 
-
-Helps you find, plan, and execute biotechnology experiments for fun and profit.
+Exploration of a simple tag-based pseudo-taxonomy of key input/output terms for biological protocols.
 
 
+Details:
 
+Idealized Input/Output "type checking" demo of molecular biology methods. Uses  a simple taxonomy key conceptual material "types" (far-right column).
+
+Each card <em>functionally defines the key conceptual inputs and outputs for each method. Input terms are in the top bar, outputs in the bottom. Clicking on a method card will turn its input bar. Cards incompatible with the clicked card's outputs will turn red; compatible methods will remain gray.
+
+Initialize the protocol cards by clicking *config>reset db* in the upper right - this loads the IO term taxonomy and protocol metadata from the (poorly-named) ontology.coffee JSON file <a href="https://github.com/100ideas/meteor-methods-bio/blob/master/lib/ontology.coffee"></a>.
+
+The "constraint solver" / type checker is a total hack. If it is not acting logically, click <em>config>reset meth0d logic</em> to help it out.
 
 links
 -----

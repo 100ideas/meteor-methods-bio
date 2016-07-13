@@ -2,15 +2,25 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>fab.bio</title>
+  <title>fab.bio - protocol interface type-checking exploration... (<a href="https://github.com/100ideas/meteor-methods-bio">github</a>)</title>
 </head>
 <body>
-  
+
 {{> navbar}}
 
+  <div class="container">
+    <p>Idealized Input/Output "type checking" demo of molecular biology methods. Uses  a simple taxonomy key conceptual material "types" (far-right column).</p>
+
+    <p>Each card <em>functionally defines</em> the key <em>conceptual</em> inputs and outputs for each method. Input terms are in the top bar, outputs in the bottom. Clicking on a method card will turn its input bar <span class="label" style="background-color: rgba(134, 255, 159, 1); color: #333;">green</span>. Cards <strong>incompatible</strong> with the clicked card's outputs will turn <span class="label" style="background-color: rgba(255, 63, 63, 0.47); color: #333;">red</span>; compatible methods will remain gray.</p>
+
+    <p>Initialize the protocol cards by clicking <em>config>reset db</em> in the upper right - this loads the IO term taxonomy and protocol metadata from the (poorly-named) ontology.coffee JSON file <a href="https://github.com/100ideas/meteor-methods-bio/blob/master/lib/ontology.coffee">(github source)</a>.</p>
+
+    <p>The "constraint solver" / type checker is a total hack. If it is not acting logically, click <em>config>reset method logic</em> to help it out.</p>
+  </div>
+
   <div id="main" class="container">
-    {{> methods}} 
-    {{> termTree}} 
+    {{> methods}}
+    {{> termTree}}
   </div>
 
 </body>
