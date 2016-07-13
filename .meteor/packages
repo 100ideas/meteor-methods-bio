@@ -3,7 +3,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-insecure
 standard-app-packages
 twbs:bootstrap
 underscore
@@ -12,3 +11,6 @@ coffeescript
 mrt:jqtree
 gandev:server-eval
 msavin:mongol
+standard-minifier-css
+standard-minifier-js
+aldeed:template-extension

@@ -5,8 +5,9 @@ Template.methods.helpers
   getcolor: (kindname) ->
     console.log kindname
     k = KindCollection.findOne({name: kindname})
-    k = KindCollection.findOne(k.root)
-    if k?.color?
+    if k?
+      k = KindCollection.findOne(k.root)
+    if k.color?
       return k.color
     else
       return "error"
@@ -14,15 +15,16 @@ Template.methods.helpers
   validMethod: (inMeth) ->
     outMeth = Session.get "selectedMethod"
     match = 0
-    if outMeth isnt ''
-      for o in outMeth.outputs
-        for i in inMeth.inputs
-          if Kind.isKindOf(o, i)
-            match++
-    if match >= outMeth.outputs?.length?
-      return ""
-    else
-      return 'disabled-method'
+    if outMeth?.outputs?
+      if outMeth isnt ''
+        for o in outMeth.outputs
+          for i in inMeth.inputs
+            if Kind.isKindOf(o, i)
+              match++
+      if match >= outMeth.outputs?.length?
+        return ""
+      else
+        return 'disabled-method'
 
   isSelectedMethod: (meth) ->
     if Session.get("selectedMethod")?._id is this._id
@@ -35,5 +37,3 @@ Template.methods.events
     else
       Session.set "selectedMethod", this
     console.log this
-
-

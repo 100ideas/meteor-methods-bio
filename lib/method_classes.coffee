@@ -14,16 +14,16 @@ class @Kind
     k1 = Kind.get(k1)
     k2 = Kind.get(k2)
     console.log "is #{k1.name} a kind of #{k2.name}?"
-    do recurse = (k1, k2) ->
+    console.log do recurse = (k1, k2) ->
       switch
         when k1.root isnt k2.root then false
-        when k1.id is k2.id then true 
+        when k1.id is k2.id then true
         when k1.id is k1.root then false #got to the top but no match
         else recurse(Kind.get(k1.parent), k2)
 
   @get: (id) ->
     KindCollection.findOne(id)
-    
+
 
 
 class @Method
@@ -32,7 +32,7 @@ class @Method
   constructor: ({@inputs, @outputs, @inames, @onames, @operator, @description}) ->
     instances.push @
 
-    
+
 
   canInput: (tx) ->
     input.iskindOf(output) for input in @inputs for output in tx.outputs
