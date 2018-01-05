@@ -1,0 +1,29 @@
+{
+  "name": "meteor-methods-bio",
+  "version": "0.5.0",
+  "description": "methods.bio meteor app for synbioleap 2015",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "meteor-node-stubs": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "meteor run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/100ideas/meteor-methods-bio.git"
+  },
+  "keywords": [
+    "protocols",
+    "dependancy",
+    "biotech"
+  ],
+  "author": "Mac Cowell (100ideas)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/100ideas/meteor-methods-bio/issues"
+  },
+  "homepage": "https://github.com/100ideas/meteor-methods-bio#readme"
+}
